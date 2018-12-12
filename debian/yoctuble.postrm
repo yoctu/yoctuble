@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# esm postrm script
+# we should activate set -e
+# In case of failure it should quit 
+
+function remove ()
+{
+    a2dissite yoctuble
+}
+
+case "$1" in
+    remove|purge)               remove          ;;
+esac

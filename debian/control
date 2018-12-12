@@ -1,0 +1,11 @@
+Source: yoctuble
+Section: utils
+Maintainer: Dzove855 <dzove855@yoctu.com>
+Build-Depends: debhelper
+Standards-Version: 0.0.1
+
+Package: yoctuble
+Architecture: all
+Priority: optional
+Depends: apache2, jq, yosh, yoctu-scripts, yoctu-client-scripts
+Description: Yoctuble - Server Inventory Management tool

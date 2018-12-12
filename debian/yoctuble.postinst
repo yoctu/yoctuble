@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# we should activate set -e
+# In case of failure it should quit 
+
+function configure ()
+{
+    a2ensite yoctuble
+    service apache2 reload
+}
+
+case "$1" in
+    configure)          configure                       ;;
+    abort-upgrade|abort-remove|abort-deconfigure)       ;;
+esac
