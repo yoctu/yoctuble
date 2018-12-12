@@ -1,0 +1,161 @@
+<div class="modal fade" id="QuestionModal" role="dialog">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog" style="vertical-align: middle;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">confirm</h4>
+                </div>
+                <div class="modal-body">
+                    Are you Sure to proceed ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="confirm-modal-yes">Yes</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ResizeModal" role="dialog">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog" style="vertical-align: middle;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Resize</h4>
+                </div>
+                <div class="modal-body">
+                    <select class="form-control" id="select-model">
+                          <option value="s1-2" selected>s1-2</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="resize-btn" onclick="goresize();">Resize</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="CommentModal" role="dialog">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog" style="vertical-align: middle;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Message</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-comment"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="save-comment-btn" onclick="savecomment();">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="MessageModal" role="dialog">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog" style="vertical-align: middle;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Message</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-text"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="PanelList" class="">
+   <div class="container">
+        <div class="col-sm-12">
+            <div class="panel" id="panel-systems">
+                <div class="panel-heading">
+                    <h2 class="panel-title pull-left">Envirronements</h2>
+                    <button class="btn btn-transparent fg-white btn-xs pull-right"><span class="glyphicon glyphicon-remove" onclick="$('#panel-systems').hide();"><i class="fa fa-times"></i></span></button>
+                    <button data-toggle="collapse" data-target="#panel-body-system" class="btn btn-transparent fg-white btn-xs pull-right" onclick=""><span class="glyphicon glyphicon-menu-down"></span></button>
+                    <button class="btn btn-transparent fg-white btn-xs pull-right" onclick=""><span class="glyphicon glyphicon-refresh"></span></button>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="panel-body-system" class="panel-body panel-collapse collapse">
+                    <div class="form-group">
+                        <label class="col-sm-4 col-sm-offset-2" for="project-select-label">Project :</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-project">
+                                <option value="yoctu" selected>yoctu</option>
+                            </select>
+                        </div>
+                    </div><br><br>
+                    <div class="form-group">
+                        <label class="col-sm-4 col-sm-offset-2" for="env-select-label">Env :</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-env">
+                            </select>
+                        </div>
+                    </div><br><hr>
+                    <div align="right"><button class="btn btn-primary" id="set-env-btn" onclick="inventory();">Apply</button></div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="container">
+        <div class="col-sm-12">
+            <div class="panel" id="esm-system">
+                <div class="panel-heading">
+                    <h2 class="panel-title pull-left">Machines</h2>
+                    <button class="btn btn-transparent fg-white btn-xs pull-right"><span class="glyphicon glyphicon-remove" onclick="$('#esm-system').hide();"><i class="fa fa-times"></i></span></button>
+                    <button onclick="" data-toggle="collapse" data-target="#panel-body-machines" class="btn btn-transparent fg-white btn-xs pull-right"><span class="glyphicon glyphicon-menu-down"></span></button>
+                    <button class="btn btn-transparent fg-white btn-xs pull-right" onclick="inventory();"><span class="glyphicon glyphicon-refresh"></span></button>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="panel-body-machines" class="panel-body panel-collapse collapse in">
+                    <table id="inventory-table" class="table responsive"></table>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-sm-12">
+            <div class="panel" id="yoctu_create_machine">
+                <div class="panel-heading">
+                    <h2 class="panel-title pull-left">Create Machine</h2>
+                        <button class="btn btn-transparent fg-white btn-xs pull-right"><span class="glyphicon glyphicon-remove" onclick="$('#yoctu_create_machine').hide();"><i class="fa fa-times"></i></span></button>
+                        <button data-toggle="collapse" data-target="#panel-body-create" class="btn btn-transparent fg-white btn-xs pull-right" onclick=""><span class="glyphicon glyphicon-menu-down"></span></button>
+                        <button class="btn btn-transparent fg-white btn-xs pull-right" onclick=""><span class="glyphicon glyphicon-refresh"></span></button>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="panel-body-create" class="panel-body panel-collapse collapse">
+                     <div class="form-group">
+                        <label class="col-sm-4 col-sm-offset-2" for="model-select-label">Model :</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-model">
+                                <option value="s1-2" selected>s1-2</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2"><a href="#" onclick="showModelDetail();"><span class="glyphicon glyphicon-info-sign"></span></a></div>
+                    </div><br><br><br>
+                    <div align="center"><button class="btn btn-danger" id="machine-create-btn" onclick="create();">Create</button></div><br>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript" src="/js/machines.js"></script>
