@@ -44,7 +44,7 @@ while getopts "${OPTS}" arg; do
 done
 shift $((OPTIND - 1))
 
-fileuuid="bck8:f8767cc5-f2fb-4fcf-9e0b-073e91dd3b21"
+fileuuid="bck8:bacaa767-d655-4acf-ad36-feb357dda739"
 filerurl="https://filer.test.flash.global"
 project="yoctuble"
 ppa_repo="public"
