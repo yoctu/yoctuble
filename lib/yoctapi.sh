@@ -23,7 +23,7 @@ yoctapi::curl(){
 
     [[ -z "${YOCTAPI['auth']}" ]] || _curl_auth="-H Authorization: ${YOCTAPI['auth']}"
 
-    curl -s -X "$method" -H "Content-type: application/json" -d "$data" --connect-timeout "${YOCTAPI['curl':'timeout']}" ${YOCTAPI['url']%/}/api/$url
+    curl -s -X "$method" -H "Content-type: application/json" -d "$data" --connect-timeout "${YOCTAPI['curl':'timeout']}" ${YOCTAPI[$env:'url']%/}/api/$url
 }
 
 yoctapi::put::comment(){
