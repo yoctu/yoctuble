@@ -1,7 +1,8 @@
 # Little lib for yoctapi
 declare -A YOCTAPI
 
-YOCTAPI['url']="THE HOST"
+# Env mode
+YOCTAPI['env':'url']="THE HOST"
 YOCTAPI['curl':'timeout']="10"
 
 yoctapi::data::manipulate(){

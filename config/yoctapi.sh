@@ -1,2 +1,2 @@
 declare -A YOCTAPI
-YOCTAPI['url']="URL"
+YOCTAPI['env':'url']="URL"

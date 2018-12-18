@@ -8,8 +8,8 @@ declare -A userEntity
 yoctapi::get::user::entity "$user" "userEntity"
 
 # Nagios host is defined in conf
-declare -A nagiosData 
-Json::to::array nagiosData "$(curl -s "$nagioshost")"
+declare -A nagiosData
+Json::to::array nagiosData "$(curl -s "${NAGIOS[$env:'url']}")"
 
 declare -A machines
 yoctapi::get::machines ${userEntity['users':$user:'u_group']} machines
