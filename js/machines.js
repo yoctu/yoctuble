@@ -216,8 +216,8 @@ function inventory () {
                     row += '</td></tr>';
             }
         }
-        $('#inventory-table').html(row);
     });
+    $('#inventory-table').html(row);
 }
 
 function getSelectOptionList () {
