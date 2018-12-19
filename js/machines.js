@@ -214,10 +214,10 @@ function inventory () {
                         row += '<a href="#" onclick="remove(\''+data.machines[key].host_name+'\',\''+data.machines[key].id+'\');"><span class="glyphicon glyphicon-remove-circle text-danger" /></a>&nbsp;&nbsp;'; 
                     }
                     row += '</td></tr>';
+    		    $('#inventory-table').html(row);
             }
         }
     });
-    $('#inventory-table').html(row);
 }
 
 function getSelectOptionList () {
