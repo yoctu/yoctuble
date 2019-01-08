@@ -1,7 +1,8 @@
 # Little lib for yoctapi
 declare -A YOCTAPI
 
-YOCTAPI['url']="THE HOST"
+# Env mode
+YOCTAPI['env':'url']="THE HOST"
 YOCTAPI['curl':'timeout']="10"
 
 yoctapi::data::manipulate(){
@@ -22,7 +23,7 @@ yoctapi::curl(){
 
     [[ -z "${YOCTAPI['auth']}" ]] || _curl_auth="-H Authorization: ${YOCTAPI['auth']}"
 
-    curl -s -X "$method" -H "Content-type: application/json" -d "$data" --connect-timeout "${YOCTAPI['curl':'timeout']}" ${YOCTAPI['url']%/}/api/$url
+    curl -s -X "$method" -H "Content-type: application/json" -d "$data" --connect-timeout "${YOCTAPI['curl':'timeout']}" ${YOCTAPI[$env:'url']%/}/api/$url
 }
 
 yoctapi::put::comment(){
@@ -38,7 +39,7 @@ yoctapi::post::machines(){
     # You should get an array
     local array="$1" url="machines"
 
-    type::variable::set array || { echo "Missing Mandatory Data while adding comment..." >&2; exit; }
+    type::variable::set array || { echo "Missing Mandatory Data while posting machines..." >&2; exit; }
 
     yoctapi::curl "post" "$url" "$(yoctapi::data::manipulate "$array")"
 }
@@ -46,7 +47,7 @@ yoctapi::post::machines(){
 yoctapi::delete::machines(){
     local machine="$1"
 
-    type::variable::set machine || { echo "Missing Mandatory Data while adding comment..." >&2; exit; }
+    type::variable::set machine || { echo "Missing Mandatory Data while deleting machines..." >&2; exit; }
     
     local url="machines/$machine"
 
@@ -56,7 +57,7 @@ yoctapi::delete::machines(){
 yoctapi::put::machines(){
     local machine="$1" array="$2"
 
-    type::variable::set machine array || { echo "Missing Mandatory Data while adding comment..." >&2; exit; }
+    type::variable::set machine array || { echo "Missing Mandatory Data while puting machines..." >&2; exit; }
 
     local url="machines/$machine"
 
@@ -66,7 +67,7 @@ yoctapi::put::machines(){
 yoctapi::get::machines(){
     local group="$1" array="$2"
     
-    type::variable::set group array || { echo "Missing Mandatory Data while adding comment..." >&2; exit; }
+    type::variable::set group array || { echo "Missing Mandatory Data while geting machines..." >&2; exit; }
 
     local url="machines/$group"
 
@@ -78,7 +79,7 @@ yoctapi::get::user::entity(){
     local array="$2"
     local response
 
-    type::variable::set user array || { echo "Missing Mandatory Data while adding comment..." >&2; exit; }
+    type::variable::set user array || { echo "Missing Mandatory Data while getting user entity..." >&2; exit; }
 
     local url="/users/$user"
 

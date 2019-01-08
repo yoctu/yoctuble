@@ -142,13 +142,13 @@ function viewmachinecomment (myhostid, myhostname, comment) {
 }
 
 function inventory () {
-    $('#inventory-table').html('');
+    $('#inventory-table').html('<div align="center"><br><div class="loader"></div><br></div>');
+    row = '<thead><tr><td>Hostname</td><td>Size</td><td>Comment</td><td>Services</td><td colspan="2">Status</td><td>Action</td></tr></thead>';
     $.ajax({
         type: "GET",
         url: "/ajaxinventory?project=" + $("#select-project").val()+ "&env="+$("#select-env").val(),
         dataType: "json",
         success: function(data) {
-            row = '<thead><tr><td>Hostname</td><td>Size</td><td>Comment</td><td>Services</td><td colspan="2">Status</td><td>Action</td></tr></thead>';
             for (key in data.machines) {
                     if (!data.machines[key].m_status) continue;
                     if (data.machines[key].m_status == 20 && !data.services[key]) continue;
@@ -214,8 +214,8 @@ function inventory () {
                         row += '<a href="#" onclick="remove(\''+data.machines[key].host_name+'\',\''+data.machines[key].id+'\');"><span class="glyphicon glyphicon-remove-circle text-danger" /></a>&nbsp;&nbsp;'; 
                     }
                     row += '</td></tr>';
+    		    $('#inventory-table').html(row);
             }
-            $('#inventory-table').append(row);
         }
     });
 }
@@ -230,7 +230,7 @@ function getSelectOptionList () {
             for (key in project) {
                 $('#select-project').append($('<option>', { value: project[key], text:project[key] }));
             }
-            $("#select-project").val("yoctu");
+            $("#select-project").val(project[0]);
         }
     });
     $.ajax({
