@@ -230,7 +230,7 @@ function getSelectOptionList () {
             for (key in project) {
                 $('#select-project').append($('<option>', { value: project[key], text:project[key] }));
             }
-            $("#select-project").val("yoctu");
+            $("#select-project").val(project[0]);
         }
     });
     $.ajax({
