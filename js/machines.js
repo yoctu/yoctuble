@@ -252,9 +252,13 @@ function getSelectOptionList () {
         dataType: "json",
         success: function(model) {
             $("#select-model").find('option').remove().end();
+            $("#select-model-2").find('option').remove().end();
             for (key in model) {
                 $('#select-model').append($('<option>', { value: model[key].split(',')[0], text: model[key].split(',')[0] }));
+                $('#select-model-2').append($('<option>', { value: model[key].split(',')[0], text: model[key].split(',')[0] }));
             }
+            $("#select-model").val(model[0].split(',')[0]);
+            $("#select-model-2").val(model[0].split(',')[0]);
         }
     });
 

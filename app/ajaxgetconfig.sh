@@ -1,13 +1,13 @@
 getListProject(){
-    ! [[ -z "${projectList}" ]] && Json::create::simple projectList
+    ! [[ -z "${projectList}" ]] && Json::create projectList
 }
 
 getListEnv(){
-    ! [[ -z "${projectEnv}" ]] && Json::create::simple projectEnv
+    ! [[ -z "${projectEnv}" ]] && Json::create projectEnv
 }
 
 getListModel(){
-    ! [[ -z "${projectModel}" ]] && Json::create::simple projectModel
+    ! [[ -z "${projectModel}" ]] && Json::create projectModel
 }
 
 case ${GET['action']} in
