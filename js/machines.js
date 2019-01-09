@@ -257,8 +257,8 @@ function getSelectOptionList () {
                 $('#select-model').append($('<option>', { value: model[key].split(',')[0], text: model[key].split(',')[0] }));
                 $('#select-model-2').append($('<option>', { value: model[key].split(',')[0], text: model[key].split(',')[0] }));
             }
-            $("#select-model").val(project[0]);
-            $("#select-model-2").val(project[0]);
+            $("#select-model").val(model[0].split(',')[0]);
+            $("#select-model-2").val(model[0].split(',')[0]);
         }
     });
 
