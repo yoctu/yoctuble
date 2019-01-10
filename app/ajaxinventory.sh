@@ -50,4 +50,5 @@ Type::array::fusion nagiosData outputJson "machines:.*"
 Type::array::fusion nagiosData outputJson "services:.*:ESM:.*"
 
 # Output the json
-Json::create outputJso
+Json::create outputJson
+
