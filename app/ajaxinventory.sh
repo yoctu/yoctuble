@@ -51,4 +51,3 @@ Type::array::fusion nagiosData outputJson "services:.*:ESM:.*"
 
 # Output the json
 Json::create outputJso
-n
