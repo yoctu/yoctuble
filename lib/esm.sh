@@ -1,10 +1,12 @@
 # a little fast esm yoconf lib
 
-declare -A ESM
+[public:assoc] ESM
 ESM['curl':'timeout']="10"
 
 yoconf::curl(){
-    local method="${1^^}" url="$2" data="$3"
+    [private] method="${1^^}" 
+    [private] url="$2" 
+    [private] data="$3"
 
     # check if all variables are set
     type::variable::set method url
@@ -16,7 +18,8 @@ yoconf::curl(){
 }
 
 esm::yoconf::get(){
-    local hostname="$1" service="$2"
+    [private] hostname="$1" 
+    [private] service="$2"
     
     [[ -z "$3" ]] && exit
     # do it like a pro :D
@@ -25,19 +28,20 @@ esm::yoconf::get(){
 
     # even more easyer for us, we're pro's
 
-    local -n array="$3"
+    [private:map] array="$3"
 
     type::variable::set hostname service || exit
     url="https://$hostname:8000/ajaxyoconf?service=$service"
 
-    while read line
-    do
+    while read line; do
         array["${line%%=*}"]="${line#*=}"
     done < <(yoconf::curl get "$url")
 }
 
 esm::yoconf::post(){
-    local hostname="$1" project="$2" user="$3"
+    [private] hostname="$1" 
+    [private] project="$2" 
+    [private] user="$3"
 
     url="https://$hostname:8000/ajaxyoconf"
 

@@ -2,19 +2,19 @@
 # Because we're rebels and don't respect google coding style :D
 
 user="$(session::get USERNAME)"
-declare -A userEntity
+[public:assoc] userEntity
 
 # Get USer entity from yoctapi
 yoctapi::get::user::entity "$user" "userEntity"
 
 # Nagios host is defined in conf
-declare -A nagiosData
+[public:assoc] nagiosData
 Json::to::array nagiosData "$(curl -s "${NAGIOS[$env:'url']}")"
 
-declare -A machines
+[public:assoc] machines
 yoctapi::get::machines ${userEntity['users':$user:'u_group']} machines
 
-declare -A outputJson
+[public:assoc] outputJson
 
 while read machine; do
     machineStatus="${machines['machines':$machine:'m_status']}"
@@ -39,7 +39,7 @@ while read machine; do
     fi
 
     if [[ "$machineStatus" != "$newMachineStatus" && ! -z "$newMachineStatus" ]]; then
-        declare -A putMachine=([m_status]="$newMachineStatus")
+        [public:assoc] putMachine=([m_status]="$newMachineStatus")
         yoctapi::put::machines "${machines['machines':$machine:'id']}" putMachine >/dev/null
     fi
 
@@ -50,4 +50,5 @@ Type::array::fusion nagiosData outputJson "machines:.*"
 Type::array::fusion nagiosData outputJson "services:.*:ESM:.*"
 
 # Output the json
-Json::create outputJson
+Json::create outputJso
+n

@@ -2,7 +2,8 @@
 # BEANSTALKD['tubes':FUNCNAME]="tubename"
 
 beanstalkd::machine::call(){
-    local tube="$1" json="$2"
+    [private] tube="$1" 
+    [private] json="$2"
     
     Type::variable::set tube json || return 1
     beanstalkd::put "$tube" "100" "0" "100" "$json"

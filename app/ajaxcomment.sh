@@ -3,14 +3,14 @@
 
 main(){
 
-    local comment="${POST['comment']}"
-    local hostid="${POST['id']}"
+    [private] comment="${POST['comment']}"
+    [private] hostid="${POST['id']}"
 
     # Check if valid fields are set
-    [[ -z "$comment" || -z "$hostid" ]] && { echo "Missing madnatory fields!"; exit; }
+    Type::variable::set comment hostid { echo "Missing madnatory fields!"; exit; }
 
     # Create array with importent data
-    local -A commentData=([m_comment]="$comment")
+    [private:assoc] commentData=([m_comment]="$comment")
 
     # call yoctapi
     yoctapi::put::comment commentData "$hostid"   

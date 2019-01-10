@@ -1,9 +1,7 @@
 
 beanstalkd::value::checker (){
-    for value in "$@"
-    do
-        if [[ -z "${!value}" ]]
-        then
+    for value in "$@"; do
+        if [[ -z "${!value}" ]]; then
             http::send::status 500
             echo "BEANSTALKD ERROR: No ${value} set!"
             exit
@@ -12,7 +10,11 @@ beanstalkd::value::checker (){
 }
 
 beanstalkd::put (){
-    local _tube="$1" priority="$2" delay="$3" ttr="$4" data="$5"
+    [private] _tube="$1" 
+    [private] priority="$2" 
+    [private:int] delay="$3" 
+    [private] ttr="$4" 
+    [private] data="$5"
 
     # check if all values are set
     beanstalkd::value::checker priority delay ttr data _tube
@@ -23,7 +25,7 @@ beanstalkd::put (){
 }
 
 beanstalkd::peekReady (){
-    local _tube="$1"    
+    [private] _tube="$1"    
 
     # check if values are set
     beanstalkd::value::checker _tube
@@ -33,7 +35,8 @@ beanstalkd::peekReady (){
 }
 
 beanstalkd::buried (){
-    local _tube="$1" _jobid="$2"
+    [private] _tube="$1" 
+    [private] _jobid="$2"
 
     # check if values are set
     beanstalkd::value::checker _tube _jobid="2"
@@ -44,7 +47,8 @@ beanstalkd::buried (){
 
 
 beanstalkd::delete (){
-    local _tube="$1" jobid="$2"
+    [private] _tube="$1" 
+    [private] jobid="$2"
 
     # check if values are set
     beanstalkd::value::checker _tube jobid
@@ -54,7 +58,7 @@ beanstalkd::delete (){
 }
 
 beanstalkd::watch (){
-    local _tube="$1"
+    [private] _tube="$1"
 
     # check if values are set
     beanstalkt-value-checker _tube
