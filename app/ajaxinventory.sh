@@ -43,11 +43,13 @@ while read machine; do
         yoctapi::put::machines "${machines['machines':$machine:'id']}" putMachine >/dev/null
     fi
 
-done < <(Type::array::get::key machines machines)
+    if ! [[ -z "${nagiosData['services':$machine:'ESM':'host_name']}" ]]; then
+        Type::array::fusion machines outputJson "machines:$machine:.*"
+        Type::array::fusion nagiosData outputJson "machines:$machine:.*"
+        Type::array::fusion nagiosData outputJson "services:$machine:ESM:.*"
+    fi
 
-Type::array::fusion machines outputJson "machines:.*"
-Type::array::fusion nagiosData outputJson "machines:.*"
-Type::array::fusion nagiosData outputJson "services:.*:ESM:.*"
+done < <(Type::array::get::key machines machines)
 
 # Output the json
 Json::create outputJson
