@@ -2,11 +2,11 @@
 
 # You should set the machine li in this array
 # default is beanstalkd
-declare -A MACHINE=([plugin]="beanstalkd")
+[private:assoc] MACHINE=([plugin]="beanstalkd")
 
 machine::data(){
-    local -A machineData
-    local key
+    [private:assoc] machineData
+    [private] key
 
     for key in "$@"; do
         machineData[$key]="${!key}"
@@ -16,7 +16,11 @@ machine::data(){
 }
 
 machine::create(){
-    local owner="$1" group="$2" email="$3" machinename="$4" model="$5"
+    [private] owner="$1" 
+    [private] group="$2" 
+    [private] email="$3" 
+    [private] machinename="$4" 
+    [private] model="$5"
     
     type::variable::set owner group email machinename model || return 1
     
@@ -24,7 +28,7 @@ machine::create(){
 }
 
 machine::delete(){
-    local machinename="$1"
+    [private] machinename="$1"
 
     type::variable::set machinename || return 1
 
@@ -32,7 +36,7 @@ machine::delete(){
 }
 
 machine::start(){
-    local machinename="$1"
+    [private] machinename="$1"
 
     type::variable::set machinename || return 1
 
@@ -40,7 +44,7 @@ machine::start(){
 }
 
 machine::stop(){
-    local machinename="$1"
+    [private] machinename="$1"
 
     type::variable::set machinename || return 1
 
@@ -48,7 +52,8 @@ machine::stop(){
 }
 
 machine::resize(){
-    local machinename="$1" model="$2"
+    [private] machinename="$1" 
+    [private] model="$2"
 
     type::variable::set machinename model || return 1 
 
