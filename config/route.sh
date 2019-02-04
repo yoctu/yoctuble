@@ -17,6 +17,8 @@ LOGIN['/':'POST']="auth::custom::request"
 #ROUTE['/acs':'POST']='Saml::retrieve::Identity'
 #ROUTE['/acs':'GET']='Saml::retrieve::Identity'
 #ROUTE['/login':'GET']='Saml::buildAuthnRequest'
+#ROUTE['/logout':'POST']='Saml::Logout'
+#ROUTE['/logout':'GET']='Saml::Logout'
 #ROUTE['/':'GET']="Html::print::out ${html_dir}/home.html"
 
 #AUTH['/':'GET']="connect"
