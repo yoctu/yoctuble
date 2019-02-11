@@ -7,7 +7,7 @@ main(){
     [private] hostid="${POST['id']}"
 
     # Check if valid fields are set
-    Type::variable::set comment hostid { echo "Missing madnatory fields!"; exit; }
+    Type::variable::set comment hostid || { echo "Missing madnatory fields!"; exit; }
 
     # Create array with importent data
     [private:assoc] commentData=([m_comment]="$comment")

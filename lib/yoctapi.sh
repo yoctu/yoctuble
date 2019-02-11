@@ -8,14 +8,9 @@ YOCTAPI['curl':'timeout']="10"
 yoctapi::data::manipulate(){
     # Data should be manipulated here
 
-    [private:map] array="$1"
-    [private:assoc] data_array
+    [private] array="$1"
 
-    for key in "${!array[@]}"; do
-        data_array['data':$key]="${array[$key]}"
-    done
-
-    Json::create data_array
+    Json::create "$array"
 }
 
 yoctapi::curl(){
