@@ -2,7 +2,7 @@
 
 # You should set the machine li in this array
 # default is beanstalkd
-[private:assoc] MACHINE=([plugin]="beanstalkd")
+[public:assoc] MACHINE=([plugin]="beanstalkd")
 
 machine::data(){
     [private:assoc] machineData
