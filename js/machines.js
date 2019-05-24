@@ -243,7 +243,7 @@ function getSelectOptionList () {
                 if (key === 0) $("#select-env").val(env[key]);
                 $('#select-env').append($('<option>', { value: env[key], text: env[key] }));
             }
-            inventory();
+            //inventory();
         }
     });
     $.ajax({

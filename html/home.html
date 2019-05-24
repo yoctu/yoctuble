@@ -82,10 +82,10 @@
 
 <div id="PanelList" class="">
    <div class="container">
-        <div class="col-sm-12">
+        <div class="col-sm-6">
             <div class="panel" id="panel-systems">
                 <div class="panel-heading">
-                    <h2 class="panel-title pull-left">Envirronements</h2>
+                    <h2 class="panel-title pull-left">Old Env</h2>
                     <button class="btn btn-transparent fg-white btn-xs pull-right"><span class="glyphicon glyphicon-remove" onclick="$('#panel-systems').hide();"><i class="fa fa-times"></i></span></button>
                     <button data-toggle="collapse" data-target="#panel-body-system" class="btn btn-transparent fg-white btn-xs pull-right" onclick=""><span class="glyphicon glyphicon-menu-down"></span></button>
                     <button class="btn btn-transparent fg-white btn-xs pull-right" onclick=""><span class="glyphicon glyphicon-refresh"></span></button>
@@ -107,6 +107,49 @@
                         </div>
                     </div><br><hr>
                     <div align="right"><button class="btn btn-primary" id="set-env-btn" onclick="inventory();">Apply</button></div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel" id="panel-cmdb-systems">
+                <div class="panel-heading">
+                    <h2 class="panel-title pull-left">CMDB Env</h2>
+                    <button class="btn btn-transparent fg-white btn-xs pull-right"><span class="glyphicon glyphicon-remove" onclick="$('#panel-systems').hide();"><i class="fa fa-times"></i></span></button>
+                    <button data-toggle="collapse" data-target="#panel-body-cmdb-system" class="btn btn-transparent fg-white btn-xs pull-right" onclick=""><span class="glyphicon glyphicon-menu-down"></span></button>
+                    <button class="btn btn-transparent fg-white btn-xs pull-right" onclick=""><span class="glyphicon glyphicon-refresh"></span></button>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="panel-body-cmdb-system" class="panel-body panel-collapse collapse">
+                    <div class="form-group">
+                        <label class="col-sm-4 col-sm-offset-2" for="project-select-label">Project :</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-cmdb-project">
+                                <option>e4p</option>
+                            </select>
+                        </div>
+                    </div><br><br>
+                    <div class="form-group">
+                        <label class="col-sm-4 col-sm-offset-2" for="env-select-label">Env :</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-cmdb-env">
+                                <option>dev</option>
+                                <option selected>test</option>
+                                <option>qual</option>
+                                <option>prod</option>
+                            </select>
+                        </div>
+                    </div><br><br>
+                    <div class="form-group">
+                        <label class="col-sm-4 col-sm-offset-2" for="env-select-label">App :</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-cmdb-app">
+                                <option value="SHAQ">NODE-SHAQ</option>
+                                <option value="PM2" selected>PM2-SHAQ</option>
+                            </select>
+                        </div>
+                    </div><br><hr>
+                    <div align="right"><button class="btn btn-primary" id="set-cmdb-env-btn" onclick="cmdb();">Apply</button></div>
                 </div>
                 <div class="panel-footer"></div>
             </div>
@@ -157,3 +200,4 @@
         </div>
     </div>
     <script type="application/javascript" src="/js/machines.js"></script>
+    <script type="application/javascript" src="/js/cmdb.js"></script>
