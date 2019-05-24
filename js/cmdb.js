@@ -100,5 +100,39 @@ function cmdb() {
             $('#inventory-table').html(result);
         }
     });
-    
 }
+
+$("#select-cmdb-project").change(function(){
+    var project = $("#select-cmdb-project").val();
+    var env = $("#select-cmdb-env").val();
+    $.ajax({
+        type: "GET",
+        url: "https://cmdb.dev.yoctu.com/v1/project/"+project+"/environment/"+env+"/applications",
+        dataType: "json",
+        success: function (data) {
+            $("#select-cmdb-app").empty();
+            for (let app in data) {
+                $("#select-cmdb-app").append($('<option>',{ value: data[app], text: data[app] }));
+            }
+        }
+    });
+});
+
+$("#select-cmdb-env").change(function(){
+    var project = $("#select-cmdb-project").val();
+    var env = $("#select-cmdb-env").val();
+    $.ajax({
+        type: "GET",
+        url: "https://cmdb.dev.yoctu.com/v1/project/"+project+"/environment/"+env+"/applications",
+        dataType: "json",
+        success: function (data) {
+            $("#select-cmdb-app").empty();
+            for (let app in data) {
+                $("#select-cmdb-app").append($('<option>',{ value: data[app], text: data[app] }));
+            }
+        }
+    });
+});
+
+
+$('#select-cmdb-env').trigger('change');
