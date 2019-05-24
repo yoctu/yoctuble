@@ -114,6 +114,7 @@ $("#select-cmdb-project").change(function(){
             for (let app in data) {
                 $("#select-cmdb-app").append($('<option>',{ value: data[app], text: data[app] }));
             }
+            cmdb();
         }
     });
 });
@@ -130,9 +131,13 @@ $("#select-cmdb-env").change(function(){
             for (let app in data) {
                 $("#select-cmdb-app").append($('<option>',{ value: data[app], text: data[app] }));
             }
+            cmdb();
         }
     });
 });
 
+$("#select-cmdb-app").change(function(){
+    cmdb();
+});
 
 $('#select-cmdb-env').trigger('change');
