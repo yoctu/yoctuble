@@ -33,7 +33,14 @@ function ReallyAddIt() {
     });
 }
 
-function deleteSpecific(instance) {
+function deleteIt(instance) {
+    $("#confirm-modal-yes").unbind('click').click(function () {
+        ReallyDeleteIt(instance);
+    });
+    $("#QuestionModal").modal('show');
+}
+
+function ReallyDeleteIt(instance) {
     var project = $("#select-cmdb-project").val();
     var env = $("#select-cmdb-env").val();
     var app = $("#select-cmdb-app").val();
@@ -44,11 +51,14 @@ function deleteSpecific(instance) {
         dataType: "json",
         success: function (result) {
             cmdb();
+            $("#QuestionModal").modal('hide');
         }
     });
 }
 
 function addIt() {
+    $("#instanceName").val("");
+    $("#instanceJson").val("");
     $("#CMDBAddModal").modal('show');
 }
 
@@ -83,7 +93,7 @@ function cmdb() {
             for (let instance in data) {
                 result += '</tr><td>' + data[instance] + '</td><td>';
                 result += '<a onclick="showSpecific(\''+data[instance]+'\');"> <span class="glyphicon glyphicon-eye-open"></span> ';
-                result += '<a onclick="deleteSpecific(\''+data[instance]+'\');"> <span class="glyphicon glyphicon-remove"></span> ';
+                result += '<a onclick="deleteIt(\''+data[instance]+'\');"> <span class="glyphicon glyphicon-remove"></span> ';
                 result += '</td></tr>';
             }
             result += '</table>';
